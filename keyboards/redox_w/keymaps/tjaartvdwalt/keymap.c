@@ -1,13 +1,12 @@
 #include QMK_KEYBOARD_H
+#include "debug.h"
 
-enum custom_keycodes {
-  _QWERTY,
-  _NAV,
-};
+#define QWERTY 0 // default layer
+#define NAV 1 // symbols
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-  [_QWERTY] = LAYOUT(
+  [QWERTY] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐
      KC_ESC  ,KC_1    ,KC_2    ,KC_3    ,KC_4    ,KC_5    ,                                            KC_8    ,KC_9    ,KC_0    ,KC_MINS ,KC_EQL  ,KC_BSLS ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -17,39 +16,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSFT ,KC_Z    ,KC_X    ,KC_C    ,KC_V    ,KC_B    ,KC_VOLU ,KC_VOLD ,        KC_PSCR ,KC_INS  ,KC_N    ,KC_M    ,KC_COMM ,KC_DOT  ,KC_SLSH ,KC_RSFT ,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
-     KC_CUT  ,KC_COPY ,KC_PASTE,KC_LGUI ,     KC_LALT ,    KC_SPC  ,KC_DEL  ,        KC_ENT  ,TT(1)   ,    KC_LEAD ,     KC_RALT ,KC_RGUI ,xxxxxxx ,xxxxxxx
+     KC_CUT  ,KC_COPY ,KC_PASTE,KC_LGUI ,     KC_LALT ,    KC_SPC  ,KC_DEL  ,        KC_ENT  ,TT(1)   ,    KC_LEAD ,     KC_RALT ,KC_RGUI ,XXXXXXX ,XXXXXXX
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
   ),
 
-  [_NAV] = LAYOUT(
+  [NAV] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                                           ┌────────┬────────┬────────┬────────┬────────┬────────┐
      _______ ,KC_F1   ,KC_F2   ,KC_F3   ,KC_F4   ,KC_F5   ,                                            KC_F8   ,KC_F9   ,KC_F10 ,KC_F11   ,KC_F12  ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐                         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     _______ ,xxxxxxx ,xxxxxxx ,xxxxxxx ,xxxxxxx ,xxxxxxx ,KC_F6   ,                          KC_F7   ,xxxxxxx ,KC_HOME ,KC_UP   ,KC_PGUP ,xxxxxxx ,XXXXXXX ,
+     _______ ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,KC_F6   ,                          KC_F7   ,XXXXXXX ,KC_HOME ,KC_UP   ,KC_PGUP ,XXXXXXX ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     _______ ,xxxxxxx ,xxxxxxx ,KC_MPRV ,KC_MPLY ,KC_MNXT ,KC_MUTE ,                          xxxxxxx ,xxxxxxx ,KC_LEFT ,KC_DOWN ,KC_RIGHT,KC_BSPC ,KC_ENT  ,
+     _______ ,XXXXXXX ,XXXXXXX ,KC_MPRV ,KC_MPLY ,KC_MNXT ,KC_MUTE ,                          XXXXXXX ,XXXXXXX ,KC_LEFT ,KC_DOWN ,KC_RIGHT,KC_BSPC ,KC_ENT  ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     _______ ,xxxxxxx ,xxxxxxx ,xxxxxxx ,xxxxxxx ,xxxxxxx ,_______ ,_______ ,        _______ ,_______ ,XXXXXXX ,KC_END  ,xxxxxxx ,KC_PGDN ,xxxxxxx ,XXXXXXX ,
+     _______ ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,_______ ,_______ ,        _______ ,_______ ,XXXXXXX ,KC_END  ,XXXXXXX ,KC_PGDN ,XXXXXXX ,XXXXXXX ,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
-     _______ ,_______ ,_______ ,_______ ,     _______ ,    _______ ,_______ ,        _______ ,_______ ,    ------- ,     ------- ,------- ,------- ,-------
+     _______ ,_______ ,_______ ,_______ ,     _______ ,    _______ ,_______ ,        _______ ,_______ ,    _______ ,     _______ ,_______ ,_______ ,_______
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
   ),
 };
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
-        case _QWERTY:
+        case QWERTY:
             set_led_off;
             break;
-        case _SYMB:
-            set_led_green;
-            break;
-        case _NAV:
-            set_led_blue;
-            break;
-        case _ADJUST:
-            set_led_red;
-            break;
+        /* case NAV: */
+        /*     set_led_blue; */
+        /*     break; */
         default:
             break;
     }

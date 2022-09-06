@@ -14,9 +14,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LCTL  ,KC_A    ,KC_S    ,KC_D    ,KC_F    ,KC_G    ,KC_GRV ,                          KC_RBRC,KC_H     ,KC_J    ,KC_K    ,KC_L    ,KC_SCLN ,KC_QUOT ,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┐       ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LSFT ,KC_Z    ,KC_X    ,KC_C    ,KC_V    ,KC_B    ,KC_VOLU ,KC_VOLD ,        KC_PSCR ,KC_INS  ,KC_N    ,KC_M    ,KC_COMM ,KC_DOT  ,KC_SLSH ,KC_RSFT ,
+     KC_LSFT ,KC_Z    ,KC_X    ,KC_C    ,KC_V    ,KC_B    ,KC_VOLD ,KC_VOLU ,        KC_PSCR ,KC_INS  ,KC_N    ,KC_M    ,KC_COMM ,KC_DOT  ,KC_SLSH ,KC_RSFT ,
   //├────────┼────────┼────────┼────────┼────┬───┴────┬───┼────────┼────────┤       ├────────┼────────┼───┬────┴───┬────┼────────┼────────┼────────┼────────┤
-     KC_CUT  ,KC_COPY ,KC_PASTE,KC_LGUI ,     KC_LALT ,    KC_SPC  ,KC_BSPC ,        KC_ENT  ,TT(1)   ,    KC_RALT ,     KC_UP   ,KC_DOWN ,KC_LEFT ,KC_RIGHT
+     KC_CUT  ,KC_COPY ,KC_PASTE,KC_LALT ,     KC_LGUI ,    KC_SPC  ,KC_BSPC ,        KC_ENT  ,TT(1)   ,    KC_RALT ,     KC_UP   ,KC_DOWN ,KC_LEFT ,KC_RIGHT
   //└────────┴────────┴────────┴────────┘    └────────┘   └────────┴────────┘       └────────┴────────┘   └────────┘    └────────┴────────┴────────┴────────┘
   ),
 
